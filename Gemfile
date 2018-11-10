@@ -30,7 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
+gem 'autoprefixer-rails'
+gem 'foundation-rails'
 gem 'jquery-rails'
 
 # Use Capistrano for deployment
