@@ -29,13 +29,29 @@ describe User, type: :model do
     end
 
     it 'cannot have a too short first name' do
-      @user.first_name = 'a' * 2
+      @user.first_name = 'a'
 
       expect(@user).not_to be_valid
     end
 
     it 'cannot have a too long first name' do
-      @user.first_name = 'a' * 25
+      @user.first_name = 'a' * 35
+
+      expect(@user).not_to be_valid
+    end
+
+    it 'cannot have an invalid email address' do
+      invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com]
+
+      invalid_addresses.each do |invalid_address|
+        @user.email = invalid_address
+
+        expect(@user).not_to be_valid
+      end
+    end
+
+    it 'must have a unique email address' do
+      @user = User.new(first_name: 'Jane', last_name: 'Doe', email: 'PIERRE@example.com')
 
       expect(@user).not_to be_valid
     end
